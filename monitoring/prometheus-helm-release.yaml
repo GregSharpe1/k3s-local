@@ -1,0 +1,20 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: prometheus-operator
+  namespace: monitoring
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: prometheus-operator
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: prometheus-operator
+    version: 9.3.1
+  values:
+    alertManager:
+      enabled: false
+    grafana:
+      enabled: false
+    kubeEtcd:
+      enabled: false
