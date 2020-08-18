@@ -21,7 +21,7 @@ spec:
         ssl-redirect: "true"
         force-ssl-redirect: "true"
         use-proxy-protocol: "true"
-        proxy-real-ip-cidr: "10.42.0.1/24"
+        proxy-real-ip-cidr: "10.42.0.0/24"
       metrics:
         enabled: true
         serviceMonitor:
