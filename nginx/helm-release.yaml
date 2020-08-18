@@ -22,6 +22,8 @@ spec:
         force-ssl-redirect: "true"
       metrics:
         enabled: true
+        serviceMonitor:
+          enabled: true
         # prometheusRule:
         #   enabled: true
         #   namespace: monitoring

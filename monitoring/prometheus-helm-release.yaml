@@ -12,6 +12,10 @@ spec:
     name: prometheus-operator
     version: 9.3.1
   values:
+    prometheus:
+      prometheusSpec:
+        serviceMonitorSelectorNilUsesHelmValues: false
+        # additionalScrapConfigs:
     alertmanager:
       enabled: false
     grafana:
