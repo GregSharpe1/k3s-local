@@ -21,12 +21,12 @@ spec:
     grafana:
       enabled: true
       ingress:
-        annotations:
-          kubernetes.io/ingress.nginx: nginx
-          kubernetes.io/tls-acme: "true"
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-        enabled: true
-        hosts:
-          - grafana.k3s.sharpe.wales
+        enabled: false
+        # annotations:
+        #   kubernetes.io/ingress.nginx: nginx
+        #   kubernetes.io/tls-acme: "true"
+        #   cert-manager.io/cluster-issuer: "letsencrypt-production"
+        # hosts:
+        #   - grafana.k3s.sharpe.wales
     kubeEtcd:
       enabled: false
