@@ -12,7 +12,7 @@ spec:
     name: prometheus-operator
     version: 9.3.1
   values:
-    alertManager:
+    alertmanager:
       enabled: false
     grafana:
       enabled: false
