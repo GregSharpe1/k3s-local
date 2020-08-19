@@ -9,6 +9,6 @@ spec:
   releaseName: falco
   chart:
     repository: https://falcosecurity.github.io/charts
-    name: falcosecurity
+    name: falco
     version: 1.2.2
 
