@@ -34,5 +34,9 @@ spec:
               - grafana.k3s.sharpe.wales
       admin:
         existingSecret: grafana-credentials
+      # Search the prometheus-configmap within the linkerd-system ns.
+      sidecar:
+        datasources:
+          searchNamespace: linkerd-system
     kubeEtcd:
       enabled: false
