@@ -1,0 +1,13 @@
+# Gatekeep does not currently support Helm v3. Check back in Oct when it's EOL
+# apiVersion: helm.fluxcd.io/v1
+# kind: HelmRelease
+# metadata:
+#   name: gatekeeper
+#   namespace: test-gatekeeper-system
+#   annotations:
+#     fluxcd.io/automated: "false"
+# spec:
+#   releaseName: gatekeeper
+#   chart:
+#     repository: https://raw.githubusercontent.com/open-policy-agent/gatekeeper/master/charts/gatekeeper
+#     name: gatekeeper
