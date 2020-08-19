@@ -34,6 +34,12 @@ spec:
               - grafana.k3s.sharpe.wales
       admin:
         existingSecret: grafana-credentials
+      additionalDataSources:
+        - name: Linkerd
+          type: prometheus
+          url: http://linkerd-prometheus.linkerd:9090
+          access: proxy
+          isDefault: false
       sidecar:
         datasources:
             enabled: true
