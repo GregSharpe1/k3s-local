@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: echoip
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+  labels:
+    app.kubernetes.io/managed-by: Flux
+  namespace: echoip
+spec:
+  rules:
+    - host: ip.k3s.sharpe.wales
+      http:
+        paths:
+          - backend:
+              serviceName: echoip
+              servicePort: 8000
+  tls:
+    - secretName: echoip-production-tls
+      hosts:
+        - ip.k3s.sharpe.wales

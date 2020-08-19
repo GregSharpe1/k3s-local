@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    app.kubernetes.io/managed-by: Flux
+  name: echoip
+  namespace: echoip
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echoip
+  template:
+    metadata:
+      labels:
+        app: echoip
+    spec:
+      containers:
+      - image: docker.io/mpolden/echoip
+        imagePullPolicy: IfNotPresent
+        name: echoip
+        args:
+          - "--trusted-header=X-Forwarded-For"
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      serviceAccount: echoip
+      serviceAccountName: echoip

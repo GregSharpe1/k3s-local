@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: echoip
+  labels:
+    app.kubernetes.io/managed-by: Flux
+  namespace: echoip
+spec:
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8080
+  selector:
+    app: echoip
