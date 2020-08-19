@@ -22,14 +22,13 @@ spec:
       enabled: true
       ingress:
         enabled: false
-      envFromSecret: grafana-credentials
+        annotations:
+          kubernetes.io/ingress.nginx: nginx
+          kubernetes.io/tls-acme: "true"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+        hosts:
+          - grafana.k3s.sharpe.wales
       admin:
         existingSecret: grafana-credentials
-        # annotations:
-        #   kubernetes.io/ingress.nginx: nginx
-        #   kubernetes.io/tls-acme: "true"
-        #   cert-manager.io/cluster-issuer: "letsencrypt-production"
-        # hosts:
-        #   - grafana.k3s.sharpe.wales
     kubeEtcd:
       enabled: false
