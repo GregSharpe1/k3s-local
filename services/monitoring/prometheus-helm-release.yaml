@@ -43,5 +43,8 @@ spec:
       sidecar:
         datasources:
             enabled: true
+      # Grabbing the public dashboards (by id)
+      dashboards:
+        - 9614
     kubeEtcd:
       enabled: false
