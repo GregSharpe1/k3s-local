@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: linkerd-grafana-datasource
-  namespace: linkerd
+  namespace: monitoring
   labels:
     grafana_datasource: "1"
 data:
