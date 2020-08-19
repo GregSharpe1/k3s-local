@@ -21,7 +21,7 @@ spec:
     grafana:
       enabled: true
       ingress:
-        enabled: false
+        enabled: true
         annotations:
           kubernetes.io/ingress.nginx: nginx
           kubernetes.io/tls-acme: "true"
