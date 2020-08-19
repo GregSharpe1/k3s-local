@@ -37,6 +37,6 @@ spec:
       # Search the prometheus-configmap within the linkerd-system ns.
       sidecar:
         datasources:
-          searchNamespace: linkerd-system
+          searchNamespace: linkerd
     kubeEtcd:
       enabled: false
