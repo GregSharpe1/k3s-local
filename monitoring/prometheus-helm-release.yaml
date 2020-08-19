@@ -28,6 +28,10 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - grafana.k3s.sharpe.wales
+        tls:
+          - secretName: grafana-production-tls
+            hosts:
+              - grafana.k3s.sharpe.wales
       admin:
         existingSecret: grafana-credentials
     kubeEtcd:
