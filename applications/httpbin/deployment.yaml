@@ -1,0 +1,74 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: httpbin
+  labels:
+    app.kubernetes.io/managed-by: Flux
+  namespace: httpbin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpbin
+  labels:
+    app.kubernetes.io/managed-by: Flux
+  namespace: httpbin
+spec:
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 80
+  selector:
+    app: httpbin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin
+  labels:
+    app.kubernetes.io/managed-by: Flux
+  namespace: httpbin
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: httpbin
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: httpbin
+        version: v1
+    spec:
+      serviceAccountName: httpbin
+      containers:
+        - image: docker.io/kennethreitz/httpbin
+          imagePullPolicy: IfNotPresent
+          name: httpbin
+          ports:
+            - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: httpbin-svc
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+  labels:
+    app.kubernetes.io/managed-by: Flux
+  namespace: httpbin
+spec:
+  rules:
+    - host: http.k3s.sharpe.wales
+      http:
+        paths:
+          - backend:
+              serviceName: httpbin
+              servicePort: 8000
+  tls:
+    - secretName: httpbin-production-tls
+      hosts:
+        - http.k3s.sharpe.wales
