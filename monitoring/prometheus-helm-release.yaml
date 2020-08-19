@@ -23,6 +23,8 @@ spec:
       ingress:
         enabled: false
       envFromSecret: grafana-credentials
+      admin:
+        existingSecret: grafana-credentials
         # annotations:
         #   kubernetes.io/ingress.nginx: nginx
         #   kubernetes.io/tls-acme: "true"
