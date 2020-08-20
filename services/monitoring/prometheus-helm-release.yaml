@@ -122,5 +122,25 @@ spec:
             url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/replicaset.json
             folder: "Linkerd"
             datasource: Linkerd
+          replicationcontroller:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/replicationcontroller.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          route:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/route.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          service:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/service.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          statefulset:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/statefulset.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          top-line:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/top-line.json
+            folder: "Linkerd"
+            datasource: Linkerd
     kubeEtcd:
       enabled: false
