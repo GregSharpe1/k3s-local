@@ -69,10 +69,57 @@ spec:
           nginx-ingress-controller:
             datasource: Prometheus
             gnetId: 9614
-            revision: 2
         linkerd:
+          authority:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/authority.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          cronjob:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/cronjob.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          daemonset:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/daemonset.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          grafana:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/grafana.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          health:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/health.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          job:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/job.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          kubernetes:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/kubernetes.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          multicluster:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/multicluster.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          namespace:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/namespace.json
+            folder: "Linkerd"
+            datasource: Linkerd
           pod:
             url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/pod.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          prometheus-benchmark:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/prometheus-benchmark.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          prometheus:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/prometheus.json
+            folder: "Linkerd"
+            datasource: Linkerd
+          replicaset:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/replicaset.json
             folder: "Linkerd"
             datasource: Linkerd
     kubeEtcd:
