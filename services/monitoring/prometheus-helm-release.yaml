@@ -64,7 +64,22 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/linkerd
+          - name: "default"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/default
       dashboards:
+        default:
+          kubernetes-cluster:
+            datasource: Prometheus
+            gnetId: 7249
+          kubernetes-cluster01:
+            datasource: Prometheus
+            gnetId: 10000
         nginx:
           nginx-ingress-controller:
             datasource: Prometheus
