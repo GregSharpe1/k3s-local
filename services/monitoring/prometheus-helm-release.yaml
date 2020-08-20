@@ -76,7 +76,7 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/postgress
+              path: /var/lib/grafana/dashboards/postgres
           - name: "default"
             orgId: 1
             folder: ""
