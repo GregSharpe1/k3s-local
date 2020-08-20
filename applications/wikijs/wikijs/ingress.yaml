@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: wiki
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+  labels:
+    app.kubernetes.io/managed-by: Flux
+  namespace: wikijs
+spec:
+  rules:
+  - host: wiki.k3s.sharpe.wales
+    http:
+      paths:
+      - backend:
+          serviceName: wikijs
+          servicePort: 8000
+  tls:
+  - hosts:
+    - wiki.k3s.sharpe.wales
+    secretName: wiki-production-tls

@@ -1,0 +1,26 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: prometheus-postgres-exporter
+  namespace: monitoring
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: prometheus-postgres-exporter
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: prometheus-postgres-exporter
+    version: 1.3.0
+  values:
+    serviceMonitor:
+      enabled: true
+      namespace: monitoring
+      interval: 30s
+    config:
+      datasource:
+        host: postgres.wikijs
+        user: postgres
+        passwordSecret:
+          name: wikijs/postgres-credentials
+          key: postgresql-password
+
