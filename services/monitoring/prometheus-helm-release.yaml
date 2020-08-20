@@ -45,6 +45,10 @@ spec:
             enabled: true
       # Grabbing the public dashboards (by id)
       dashboards:
-        - 9614
+        myprovider:
+          nginx-ingress-controller:
+            datasource: Prometheus
+            gnetId: 9614
+            revision: 1
     kubeEtcd:
       enabled: false
