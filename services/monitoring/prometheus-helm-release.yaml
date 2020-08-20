@@ -40,6 +40,11 @@ spec:
           url: http://linkerd-prometheus.linkerd:9090
           access: proxy
           isDefault: false
+        - name: Postgres
+          type: prometheus
+          url: http://prometheus-postgres-exporter:80
+          access: proxy
+          isDefault: false
       # sidecar:
       #   datasources:
       #       enabled: true
@@ -90,7 +95,7 @@ spec:
             gnetId: 10000
         postgres:
           postgres-exporter:
-            datasource: Prometheus
+            datasource: Postgres
             gnetId: 3742
         nginx:
           nginx-ingress-controller:
