@@ -45,7 +45,7 @@ spec:
       #       enabled: true
       # Grabbing the public dashboards (by id)
       dashboardProviders:
-        dashboardsproviders.yaml:
+        dashboardproviders.yaml:
           apiVersion: 1
           providers:
           - name: "nginx"
