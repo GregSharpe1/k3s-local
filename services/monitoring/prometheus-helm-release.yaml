@@ -40,15 +40,40 @@ spec:
           url: http://linkerd-prometheus.linkerd:9090
           access: proxy
           isDefault: false
-      sidecar:
-        datasources:
-            enabled: true
+      # sidecar:
+      #   datasources:
+      #       enabled: true
       # Grabbing the public dashboards (by id)
+      dashboardProviders:
+        dashboardsproviders.yaml:
+          apiVersion: 1
+          providers:
+          - name: "nginx"
+            orgId: 1
+            folder: "Nginx"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/nginx
+          - name: "Linkerd"
+            orgId: 1
+            folder: "Linkerd"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/linkerd
       dashboards:
-        default:
+        nginx:
           nginx-ingress-controller:
             datasource: Prometheus
             gnetId: 9614
             revision: 2
+        linkerd:
+          pod:
+            url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/pod.json
+            folder: "Linkerd"
+            datasource: Linkerd
     kubeEtcd:
       enabled: false
