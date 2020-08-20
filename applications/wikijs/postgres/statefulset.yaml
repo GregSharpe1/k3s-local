@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: postgresql
+  namespace: wikijs
   labels:
     app: postgresql
 spec:
