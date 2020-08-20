@@ -20,6 +20,7 @@ spec:
       datasource:
         host: postgres.wikijs
         user: postgres
+        password: ''
         passwordSecret:
           name: wikijs/postgres-credentials
           key: postgresql-password
