@@ -64,6 +64,14 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/linkerd
+          - name: "postgres"
+            orgId: 1
+            folder: "Postgres"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/postgress
           - name: "default"
             orgId: 1
             folder: ""
@@ -80,6 +88,10 @@ spec:
           kubernetes-cluster01:
             datasource: Prometheus
             gnetId: 10000
+        postgres:
+          postgres-exporter:
+            datasource: Prometheus
+            gnetId: 3742
         nginx:
           nginx-ingress-controller:
             datasource: Prometheus
