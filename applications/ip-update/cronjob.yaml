@@ -1,0 +1,32 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ip-updater
+  namespace: kube-system
+spec:
+  schedule: "15 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: ip-updater
+            image: gregsharpe/awscli-jq:0.5
+            env:
+            - name: ROUTE53_DOMAIN
+              value: "sharpe.wales."
+            envFrom:
+              - secretRef:
+                  name: ip-updater-credentials
+            command: ["/aws/scripts/update-ip.sh"]
+            volumeMounts:
+            - name: scripts-volume
+              mountPath: /aws/scripts/update-ip.sh
+              subPath: update-ip.sh
+          restartPolicy: Never
+          volumes:
+            - name: scripts-volume
+              configMap:
+                name: ip-updater
+                defaultMode: 0700
+
