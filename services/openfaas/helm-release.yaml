@@ -13,6 +13,7 @@ spec:
     version: 6.0.1
   values:
     functionNamespace: openfaas-fn
+    generateBasicAuth: true
     ingress:
       enabled: true
       hosts:
