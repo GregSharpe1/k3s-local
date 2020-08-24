@@ -22,7 +22,13 @@ spec:
       hosts:
       - name: chartmuseum.k3s.sharpe.wales
         tls: true
+        tlsSecret: chartmuseum-production-tls
       annotations:
         kubernetes.io/ingress.class: nginx
         kubernetes.io/tls-acme: "true"
         cert-manager.io/cluster-issuer: "letsencrypt-production"
+
+    # Prometheus
+    serviceMonitor:
+      enabled: true
+
