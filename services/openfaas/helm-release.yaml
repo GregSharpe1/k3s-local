@@ -19,15 +19,15 @@ spec:
         - host: gateway.k3s.sharpe.wales
           serviceName: gateway
           servicePort: 8080
-          path: /
-        annotations:
-          kubernetes.io/ingress.class: nginx
-          kubernetes.io/tls-acme: "true"
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-        tls:
-          - secretName: openfaas-production-tls
-            hosts:
-              - gateway.k3s.sharpe.wales
+          path: "/"
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+      tls:
+        - secretName: openfaas-production-tls
+          hosts:
+            - gateway.k3s.sharpe.wales
     prometheus:
       create: false
     alertmanager:
