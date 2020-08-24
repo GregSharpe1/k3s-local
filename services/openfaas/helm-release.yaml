@@ -32,7 +32,7 @@ spec:
     faasIdler:
       inactivityDuration: 5m
     prometheus:
-      create: false
+      create: true
     alertmanager:
       create: false
 

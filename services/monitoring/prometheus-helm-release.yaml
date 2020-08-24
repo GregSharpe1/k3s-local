@@ -45,6 +45,11 @@ spec:
           url: http://prometheus-postgres-exporter:80
           access: proxy
           isDefault: false
+        - name: Openfaas
+          type: prometheus
+          url: http://prometheus.openfaas:9090
+          access: proxy
+          isDefault: false
       # sidecar:
       #   datasources:
       #       enabled: true
