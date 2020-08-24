@@ -29,6 +29,8 @@ spec:
         - secretName: openfaas-production-tls
           hosts:
             - gateway.k3s.sharpe.wales
+    faasIdler:
+      inactivityDuration: 5m
     prometheus:
       create: false
     alertmanager:
