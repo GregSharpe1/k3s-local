@@ -82,14 +82,14 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/postgres
-          - name: "openfaas-ds"
+          - name: "openfaas"
             orgId: 1
-            folder: "Openfaas"
+            folder: "Openfaas dash's"
             type: file
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/openfaas-ds
+              path: /var/lib/grafana/dashboards/openfaas
           - name: "default"
             orgId: 1
             folder: ""
@@ -114,10 +114,13 @@ spec:
           nginx-ingress-controller:
             datasource: Prometheus
             gnetId: 9614
-        openfaas-ds:
+        openfaas:
           openfaas-default:
             datasource: Openfaas
             gnetId: 11202
+          openfaas-serverless-dashboard:
+            datasource: Openfaas
+            gnetId: 3434
         linkerd:
           authority:
             url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/authority.json
