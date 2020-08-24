@@ -1,0 +1,28 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: chart-museum
+  namespace: chart-museum
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: chart-museum
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: chartmuseum
+    version: 2.13.2
+  values:
+    env:
+      existingSecret: basic-auth-credentials
+      existingSecretMappings:
+        BASIC_AUTH_USER: basic-auth-user
+        BASIC_AUTH_PASS: basic-auth-pass
+    ingress:
+      enabled: true
+      hosts:
+      - name: chartmuseum.k3s.sharpe.wales
+        tls: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        nginx.ingress.kubernetes.io/proxy-body-size: "0m"
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
