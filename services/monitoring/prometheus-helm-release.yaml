@@ -48,8 +48,12 @@ spec:
           - secretName: grafana-production-tls
             hosts:
               - grafana.k3s.sharpe.wales
+      plugins:
+        - grafana-piechart-panel
+        - grafana-worldmap-panel
       admin:
         existingSecret: grafana-credentials
+      # https://grafana.com/docs/grafana/latest/administration/provisioning/#datasources
       additionalDataSources:
         - name: Linkerd
           type: prometheus
@@ -66,16 +70,17 @@ spec:
           url: http://prometheus.openfaas:9090
           access: proxy
           isDefault: false
-        - name: Gorilla - Home Local
+        - name: Gorilla - Prometheus
           type: prometheus
           url: http://192.168.86.201:9091
           access: proxy
           isDefault: false
-        # - name: Transmission Exporter - Home Local
-        #   type: prometheus
-        #   url: http://192.168.86.201:19091
+        # - name: Gorilla - InfluxDB
+        #   type: influxdb
+        #   url: http://192.168.86.201:8086
         #   access: proxy
-        #   isDefault: false
+        #   user: my-influxdb-user
+        #   password: my-influxdb-password-lol
       dashboardProviders:
         dashboardproviders.yaml:
           apiVersion: 1
@@ -99,7 +104,7 @@ spec:
           - name: "postgres"
             orgId: 1
             folder: "Postgres"
-            type: file
+            typ e: file
             disableDeletion: false
             editable: true
             options:
@@ -112,6 +117,14 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/openfaas
+          - name: "gorilla"
+            orgId: 1
+            folder: "Gorilla Infrastructure"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/gorilla
           - name: "default"
             orgId: 1
             folder: ""
@@ -143,6 +156,10 @@ spec:
           openfaas-serverless-dashboard:
             datasource: Openfaas
             gnetId: 3434
+        gorilla:
+          varken-offical:
+            datasource: Prometheus # Going to be InfluxDB when I work out how to add user/pass securely
+            gnetId: 9585
         linkerd:
           authority:
             url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/authority.json
