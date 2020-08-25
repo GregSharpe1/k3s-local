@@ -17,7 +17,7 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         # additionalScrapConfigs:
     alertmanager:
-      enabled: false
+      enabled: true
     grafana:
       enabled: true
       ingress:
