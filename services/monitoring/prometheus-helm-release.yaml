@@ -48,9 +48,9 @@ spec:
           - secretName: grafana-production-tls
             hosts:
               - grafana.k3s.sharpe.wales
-      # plugins:
-      #   - grafana-piechart-panel
-      #   - grafana-worldmap-panel
+      plugins:
+        - grafana-piechart-panel
+        - grafana-worldmap-panel
       admin:
         existingSecret: grafana-credentials
       # https://grafana.com/docs/grafana/latest/administration/provisioning/#datasources
@@ -104,7 +104,7 @@ spec:
           - name: "postgres"
             orgId: 1
             folder: "Postgres"
-            typ e: file
+            type: file
             disableDeletion: false
             editable: true
             options:
@@ -117,14 +117,14 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/openfaas
-          # - name: "gorilla"
-          #   orgId: 1
-          #   folder: "Gorilla Infrastructure"
-          #   type: file
-          #   disableDeletion: false
-          #   editable: true
-          #   options:
-          #     path: /var/lib/grafana/dashboards/gorilla
+          - name: "gorilla"
+            orgId: 1
+            folder: "Gorilla Infrastructure"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/gorilla
           - name: "default"
             orgId: 1
             folder: ""
@@ -156,10 +156,10 @@ spec:
           openfaas-serverless-dashboard:
             datasource: Openfaas
             gnetId: 3434
-        # gorilla:
-        #   varken-offical:
-        #     datasource: Prometheus # Going to be InfluxDB when I work out how to add user/pass securely
-        #     gnetId: 9585
+        gorilla:
+          varken-offical:
+            datasource: Prometheus # Going to be InfluxDB when I work out how to add user/pass securely
+            gnetId: 9585
         linkerd:
           authority:
             url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/authority.json
