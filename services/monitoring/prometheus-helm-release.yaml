@@ -70,7 +70,7 @@ spec:
           url: http://prometheus.openfaas:9090
           access: proxy
           isDefault: false
-        - name: Gorilla - Prometheus
+        - name: GorillaPrometheus
           type: prometheus
           url: http://192.168.86.201:9091
           access: proxy
@@ -156,10 +156,10 @@ spec:
           openfaas-serverless-dashboard:
             datasource: Openfaas
             gnetId: 3434
-        # gorilla:
-        #   varken-offical:
-        #     datasource: Prometheus # Going to be InfluxDB when I work out how to add user/pass securely
-        #     gnetId: 9585
+        gorilla:
+          varken-offical:
+            datasource: Prometheus # Going to be InfluxDB when I work out how to add user/pass securely
+            gnetId: 9585
         linkerd:
           authority:
             url: https://raw.githubusercontent.com/linkerd/linkerd2/main/grafana/dashboards/authority.json
