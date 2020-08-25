@@ -117,14 +117,14 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/openfaas
-          - name: "gorilla"
-            orgId: 1
-            folder: "Gorilla Infrastructure"
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/gorilla
+          # - name: "gorilla"
+          #   orgId: 1
+          #   folder: "Gorilla Infrastructure"
+          #   type: file
+          #   disableDeletion: false
+          #   editable: true
+          #   options:
+          #     path: /var/lib/grafana/dashboards/gorilla
           - name: "default"
             orgId: 1
             folder: ""
