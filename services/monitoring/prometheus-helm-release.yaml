@@ -66,10 +66,16 @@ spec:
           url: http://prometheus.openfaas:9090
           access: proxy
           isDefault: false
-      # sidecar:
-      #   datasources:
-      #       enabled: true
-      # Grabbing the public dashboards (by id)
+        - name: Gorilla - Home Local
+          type: prometheus
+          url: http://192.168.86.201:9091
+          access: proxy
+          isDefault: false
+        # - name: Transmission Exporter - Home Local
+        #   type: prometheus
+        #   url: http://192.168.86.201:19091
+        #   access: proxy
+        #   isDefault: false
       dashboardProviders:
         dashboardproviders.yaml:
           apiVersion: 1
