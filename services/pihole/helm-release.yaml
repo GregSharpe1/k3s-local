@@ -20,15 +20,15 @@ spec:
       TZ: "Europe/London"
       ServerIP: 192.168.86.169
 
-      serviceTCP:
-        type: LoadBalancer
-        annotations:
-          metallb.universe.tf/allow-shared-ip: pihole-svc
+    serviceTCP:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
 
-      serviceUDP:
-        type: LoadBalancer
-        annotations:
-          metallb.universe.tf/allow-shared-ip: pihole-svc
+    serviceUDP:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
 
       hostNetwork: "true"
       privileged: "true"
