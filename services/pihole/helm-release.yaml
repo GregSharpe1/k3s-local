@@ -1,0 +1,31 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: pihole
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: pihole
+  chart:
+    repository: https://mojo2600.github.io/pihole-kubernetes/
+    name: pihole
+  values:
+    extraEnvVars:
+      TZ: "Europe/London"
+      ServerIP: 192.168.86.169
+
+      serviceTCP:
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: pihole-svc
+
+      serviceUDP:
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: pihole-svc
+
+      hostNetwork: "true"
+      privileged: "true"
+      webHttp: "55080"
+      webHttps: "55443"
