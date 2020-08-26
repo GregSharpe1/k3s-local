@@ -12,6 +12,9 @@ spec:
     name: pihole
     version: 1.7.14
   values:
+    persistentVolumeClaim:
+      enabled: true
+
     admin:
       existingSecret: "pihole-credentials"
       passwordKey: "admin-password"
@@ -30,7 +33,11 @@ spec:
       annotations:
         metallb.universe.tf/allow-shared-ip: pihole-svc
 
-      hostNetwork: "true"
-      privileged: "true"
-      webHttp: "55080"
-      webHttps: "55443"
+    DNS1: "1.1.1.1"
+    DNS2: "8.8.8.8"
+
+    dnsmasq:
+      customDnsEntries:
+        - address=/pihole.local/192.168.86.171
+        - address=/plex.local/192.168.86.201
+        - address=/proxmox.local/192.168.86.200
