@@ -25,6 +25,8 @@ spec:
 
     serviceTCP:
       type: LoadBalancer
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
 
     serviceUDP:
       type: LoadBalancer
@@ -39,3 +41,6 @@ spec:
         - address=/pihole.local/192.168.86.171
         - address=/plex.local/192.168.86.201
         - address=/proxmox.local/192.168.86.200
+
+    webHttp: "8080"
+    webHttps: "8443"
