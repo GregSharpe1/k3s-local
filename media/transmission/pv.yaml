@@ -1,25 +1,26 @@
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: transmission
-#   namespace: media-transmission
-# spec:
-#   accessModes:
-#   - ReadWriteOnce
-#   capacity:
-#     storage: 1Gi
-#   persistentVolumeReclaimPolicy: Delete
-#   storageClassName: local-path
-# ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-transmission
+spec:
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.86.200
+    path: "/nfs/Downloads"
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: transmission
-  namespace: media-transmission
+  name: "nfs-transmission"
+  namespace: "media-transmission"
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
-      storage: 1Gi
-  storageClassName: local-path
+      storage: "100Gi"
+  volumeName: nfs-transmission
+  storageClassName: ""

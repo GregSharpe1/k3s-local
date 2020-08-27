@@ -38,21 +38,43 @@ spec:
       value: "false"
     - name: TRANSMISSION_WEB_UI
       value: "transmission-web-control"
+    - name: TRANSMISSION_DOWNLOAD_DIR
+      value: "/nfs-downloads/complete"
+    - name: TRANSMISSION_INCOMPLETE_DIR_ENABLED
+      value: "true"
+    - name: TRANSMISSION_INCOMPLETE_DIR
+      value: "/nfs-downloads/incomplete"
+    - name: TRANSMISSION_RATIO_LIMIT
+      value: "0.01"
+    - name: TRANSMISSION_RATIO_LIMIT_ENABLED
+      value: "true"
+    - name: TRANSMISSION_ALT_SPEED_DOWN
+      value: "1000"
+    - name: TRANSMISSION_ALT_SPEED_UP
+      value: "200"
+    - name: TRANSMISSION_ALT_SPEED_TIME_ENABLED
+      value: "true"
+    - name: TRANSMISSION_ALT_SPEED_TIME_DAY
+      value: "62"
+    - name: TRANSMISSION_ALT_SPEED_TIME_BEGIN
+      value: "420"
+    - name: TRANSMISSION_ALT_SPEED_TIME_END
+      value: "1380"
     - name: TRANSMISSION_BLOCKLIST_ENABLED
       value: "true"
-    - name: TRANSMISSION_BLOCKLIST_URL
-      name: "http://john.bitsurge.net/public/biglist.p2p.gz"
+    # - name: TRANSMISSION_BLOCKLIST_URL
+    #   name: "http://john.bitsurge.net/public/biglist.p2p.gz"
 
     volumes:
-      - name: "tranmission"
+      - name: "transmission"
         persistentVolumeClaim:
-          claimName: "transmission"
+          claimName: "nfs-transmission"
       - name: "dev-tun"
         hostPath:
           path: "/dev/net/tun"
     volumeMounts:
       - name: "transmission"
-        mountPath: "/data"
+        mountPath: "/nfs-downloads"
       - name: "dev-tun"
         mountPath: "/dev/net/tun"
 
