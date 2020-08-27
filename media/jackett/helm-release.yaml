@@ -1,0 +1,73 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: jackett
+  namespace: media
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: jackett
+  chart:
+    repository: https://bananaspliff.github.io/geek-charts
+    name: jackett
+    version: 0.1.0
+  values:
+    image:
+      repository: "dyonr/jackettvpn"
+      tag: debian-base
+      pullPolicy: "IfNotPresent"
+
+    env:
+      - name: VPN_ENABLED
+        value: "yes"
+      - name: VPN_TYPE
+        value: "openvpn"
+      - name: VPN_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: "jackett-credentials"
+            key: "openvpn-username"
+      - name: VPN_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "jackett-credentials"
+            key: "openvpn-password"
+      - name: WEBUI_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "jackett-credentials"
+            key: "webui-password"
+      - name: LAN_NETWORK
+        value: "192.168.86.0/24"
+      - name: CREATE_TUN_DEVICE
+        value: "true"
+      - name: PUID
+        value: "1000"
+      - name: PGID
+        value: "1000"
+
+    service:
+      type: LoadBalancer
+      port: 80
+
+    volumes:
+      - name: "jackett-downloads"
+        persistentVolumeClaim:
+          claimName: "nfs-jackett"
+      - name: "jackett-configs"
+        persistentVolumeClaim:
+          claimName: "nfs-configs"
+      - name: "dev-tun"
+        hostPath:
+          path: "/dev/net/tun"
+
+    volumeMounts:
+      - name: "jackett-downloads"
+        mountPath: "/nfs-downloads"
+      - name: "jackett-config"
+        mount: "/nfs-configs"
+
+    securityContext:
+      capabilities:
+        add:
+          - NET_ADMIN
