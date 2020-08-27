@@ -12,7 +12,10 @@ spec:
     name: transmission-openvpn
     version: 0.1.0
   values:
-    replicaCount: 5
+    image:
+      repository: "haugene/transmission-openvpn"
+      tag: "2.13"
+      pullPolicy: "IfNotPresent"
     env:
     - name: OPENVPN_PROVIDER
       value: MULLVAD
@@ -38,6 +41,14 @@ spec:
       value: true
     - name: TRANSMISSION_BLOCKLIST_URL
       name: http://john.bitsurge.net/public/biglist.p2p.gz
+
+    volumes:
+      - name: "dev-tun"
+        hostPath:
+          path: "/dev/net/tun"
+    volumeMounts:
+      - name: "dev-tun"
+        mountPath: "/dev/net/tun"
 
     securityContext:
       capabilities:
