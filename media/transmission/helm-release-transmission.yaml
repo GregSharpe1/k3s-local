@@ -64,6 +64,9 @@ spec:
       value: "true"
     # - name: TRANSMISSION_BLOCKLIST_URL
     #   name: "http://john.bitsurge.net/public/biglist.p2p.gz"
+    service:
+      type: LoadBalancer
+      port: 80
 
     volumes:
       - name: "transmission"
