@@ -13,30 +13,30 @@ spec:
     version: 0.1.0
     values:
       env:
-        - name: OPENVPN_PROVIDER
-          value: MULLVAD
-        - name: OPENVPN_CONFIG
-          value: "mullvad_se-sto-tcp443"
-        - name: OPENVPN_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: transmission-credentials
-              key: username
-        - name: OPENVPN_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: transmission-credentials
-              key: password
-        - name: LOCAL_NETWORK
-          value: "192.168.86.0/24"
-        - name: WEBPROXY_ENABLED
-          value: false
-        - name: TRANSMISSION_WEB_UI
-          value: transmission-web-control
-        - name: TRANSMISSION_BLOCKLIST_ENABLED
-          value: true
-        - name: TRANSMISSION_BLOCKLIST_URL
-          name: http://john.bitsurge.net/public/biglist.p2p.gz
+      - name: OPENVPN_PROVIDER
+        value: MULLVAD
+      - name: OPENVPN_CONFIG
+        value: "mullvad_se-sto-tcp443"
+      - name: OPENVPN_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: transmission-credentials
+            key: username
+      - name: OPENVPN_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: transmission-credentials
+            key: password
+      - name: LOCAL_NETWORK
+        value: "192.168.86.0/24"
+      - name: WEBPROXY_ENABLED
+        value: false
+      - name: TRANSMISSION_WEB_UI
+        value: transmission-web-control
+      - name: TRANSMISSION_BLOCKLIST_ENABLED
+        value: true
+      - name: TRANSMISSION_BLOCKLIST_URL
+        name: http://john.bitsurge.net/public/biglist.p2p.gz
 
       securityContext:
         capabilities:
