@@ -64,7 +64,7 @@ spec:
     volumeMounts:
       - name: "jackett-downloads"
         mountPath: "/nfs-downloads"
-      - name: "jackett-config"
+      - name: "jackett-configs"
         mountPath: "/nfs-configs"
         subPath: "jackett"
 
