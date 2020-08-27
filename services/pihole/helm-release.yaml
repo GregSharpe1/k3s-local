@@ -42,8 +42,8 @@ spec:
         - 192.168.86.200 prox
         - 192.168.86.201 plex
         - 192.168.86.172 transmission
-        - 192.168.86.173 sonarr
-        - 192.168.86.174 radarr
+        - 192.168.86.173 radarr
+        - 192.168.86.174 sonarr
 
     webHttp: "8080"
     webHttps: "8443"
