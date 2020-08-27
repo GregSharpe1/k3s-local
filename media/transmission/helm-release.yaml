@@ -68,7 +68,7 @@ spec:
     #   name: "http://john.bitsurge.net/public/biglist.p2p.gz"
     service:
       type: LoadBalancer
-      port: 80
+      port: 9191
 
     volumes:
       - name: "transmission-downloads"
