@@ -67,7 +67,7 @@ spec:
       - name: "jackett-downloads"
         mountPath: "/nfs-downloads"
       - name: "jackett-configs"
-        mountPath: "/nfs-configs"
+        mountPath: "/config"
         subPath: "jackett"
 
     securityContext:
