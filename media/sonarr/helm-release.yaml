@@ -40,7 +40,7 @@ spec:
     volumeMounts:
       - name: sonarr-config
         mountPath: /config
-        subPath: "/sonarr"
+        subPath: "sonarr"
       - name: nfs-downloads
         mountPath: "/nfs-downloads"
       - name: nfs-tvshows
