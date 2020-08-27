@@ -10,7 +10,7 @@ spec:
   chart:
     repository: https://bananaspliff.github.io/geek-charts
     name: transmission-openvpn
-    version: 1.2.2
+    version: 0.1.0
     values:
       env:
       - name: OPENVPN_PROVIDER
