@@ -22,6 +22,13 @@ spec:
       - name: PGID
         value: "1000"
 
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 0.5
+      limit:
+        memory: 1Gi
+        cpu: 1
     service:
       type: LoadBalancer
       port: 80
