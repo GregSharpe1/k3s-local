@@ -27,21 +27,21 @@ spec:
       port: 80
 
     volumes:
-      - name: nfs-downloads
+      - name: "sonarr-downloads"
         persistentVolumeClaim:
           claimName: "nfs-downloads"
-      - name: nfs-downloads
+      - name: "sonarr-tvshows"
         persistentVolumeClaim:
           claimName: "nfs-tvshows"
-      - name: sonarr-config
+      - name: "sonarr-config"
         persistentVolumeClaim:
           claimName: "nfs-configs"
 
     volumeMounts:
-      - name: sonarr-config
-        mountPath: /config
+      - name: "sonarr-config"
+        mountPath: "/config"
         subPath: "sonarr"
-      - name: nfs-downloads
+      - name: "sonarr-downloads"
         mountPath: "/nfs-downloads"
-      - name: nfs-tvshows
+      - name: "sonarr-tvshows"
         mountPath: "/nfs-tvshows"
