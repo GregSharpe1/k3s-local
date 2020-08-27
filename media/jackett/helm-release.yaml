@@ -37,6 +37,8 @@ spec:
           secretKeyRef:
             name: "jackett-credentials"
             key: "webui-password"
+      - name: DISABLE_IPV6
+        value: "1"
       - name: LAN_NETWORK
         value: "192.168.86.0/24"
       - name: CREATE_TUN_DEVICE
