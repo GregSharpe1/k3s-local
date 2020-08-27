@@ -1,0 +1,25 @@
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: transmission
+#   namespace: media-transmission
+# spec:
+#   accessModes:
+#   - ReadWriteOnce
+#   capacity:
+#     storage: 1Gi
+#   persistentVolumeReclaimPolicy: Delete
+#   storageClassName: local-path
+# ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: transmission
+  namespace: media-transmission
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: local-path

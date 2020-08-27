@@ -16,9 +16,10 @@ spec:
       repository: "haugene/transmission-openvpn"
       tag: "2.13"
       pullPolicy: "IfNotPresent"
+
     env:
     - name: OPENVPN_PROVIDER
-      value: MULLVAD
+      value: "MULLVAD"
     - name: OPENVPN_CONFIG
       value: "mullvad_se-sto-tcp443"
     - name: OPENVPN_USERNAME
@@ -34,19 +35,24 @@ spec:
     - name: LOCAL_NETWORK
       value: "192.168.86.0/24"
     - name: WEBPROXY_ENABLED
-      value: false
+      value: "false"
     - name: TRANSMISSION_WEB_UI
-      value: transmission-web-control
+      value: "transmission-web-control"
     - name: TRANSMISSION_BLOCKLIST_ENABLED
-      value: true
+      value: "true"
     - name: TRANSMISSION_BLOCKLIST_URL
-      name: http://john.bitsurge.net/public/biglist.p2p.gz
+      name: "http://john.bitsurge.net/public/biglist.p2p.gz"
 
     volumes:
+      - name: "tranmission"
+        persistentVolumeClaim:
+          claimName: "transmission"
       - name: "dev-tun"
         hostPath:
           path: "/dev/net/tun"
     volumeMounts:
+      - name: "transmission"
+        mountPath: "/data"
       - name: "dev-tun"
         mountPath: "/dev/net/tun"
 
