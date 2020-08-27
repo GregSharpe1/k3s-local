@@ -2,7 +2,7 @@ apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   name: transmission
-  namespace: media-transmission
+  namespace: media
   annotations:
     fluxcd.io/automated: "false"
 spec:
@@ -71,7 +71,7 @@ spec:
     volumes:
       - name: "transmission"
         persistentVolumeClaim:
-          claimName: "nfs-transmission"
+          claimName: "nfs-downloads"
       - name: "dev-tun"
         hostPath:
           path: "/dev/net/tun"
