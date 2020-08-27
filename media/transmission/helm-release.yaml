@@ -38,6 +38,8 @@ spec:
       value: "false"
     - name: TRANSMISSION_WEB_UI
       value: "transmission-web-control"
+    - name: TRANSMISSION_HOME
+      value: "/nfs-configs/transmission-home"
     - name: TRANSMISSION_DOWNLOAD_DIR
       value: "/nfs-downloads/complete"
     - name: TRANSMISSION_INCOMPLETE_DIR_ENABLED
@@ -69,15 +71,21 @@ spec:
       port: 80
 
     volumes:
-      - name: "transmission"
+      - name: "transmission-downloads"
         persistentVolumeClaim:
           claimName: "nfs-downloads"
+      - name: "transmission-config"
+        persistentVolumeClaim:
+          claimName: "nfs-configs"
       - name: "dev-tun"
         hostPath:
           path: "/dev/net/tun"
     volumeMounts:
-      - name: "transmission"
+      - name: "transmission-downloads"
         mountPath: "/nfs-downloads"
+      - name: "transmission-config"
+        mountPath: "/nfs-configs"
+        subPath: "transmission"
       - name: "dev-tun"
         mountPath: "/dev/net/tun"
 
