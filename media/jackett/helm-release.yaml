@@ -14,7 +14,7 @@ spec:
   values:
     image:
       repository: "dyonr/jackettvpn"
-      tag: debian-base
+      tag: latest
       pullPolicy: "IfNotPresent"
 
     env:
