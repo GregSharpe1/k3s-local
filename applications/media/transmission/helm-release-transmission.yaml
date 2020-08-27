@@ -12,6 +12,7 @@ spec:
     name: transmission-openvpn
     version: 0.1.0
     values:
+      replicaCount: 5
       env:
       - name: OPENVPN_PROVIDER
         value: MULLVAD
