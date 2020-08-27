@@ -69,6 +69,8 @@ spec:
       - name: "jackett-configs"
         mountPath: "/config"
         subPath: "jackett"
+      - name: "dev-tun"
+        mountPath: "/dev/net/tun"
 
     securityContext:
       capabilities:
