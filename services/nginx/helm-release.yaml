@@ -19,6 +19,7 @@ spec:
         enabled: true
       service:
         externalTrafficPolicy: Local
+        loadBalancerIP: "192.168.86.170"
       config:
         forwarded-for-header: "X-Forwarded-For"
         # enabled-real-ip: "true"
