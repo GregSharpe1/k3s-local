@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarr
+      release: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+        release: sonarr
+    spec:
+      volumes:
+      - name: sonarr-downloads
+        persistentVolumeClaim:
+          claimName: nfs-downloads
+      - name: sonarr-tvshows
+        persistentVolumeClaim:
+          claimName: nfs-tvshows
+      - name: sonarr-config
+        persistentVolumeClaim:
+          claimName: sonar-config
+      containers:
+        - name: sonarr
+          image: "linuxserver/sonarr:3.0.3.911-ls39"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+          ports:
+            - name: http
+              containerPort: 8989
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: sonarr-config
+              subPath: sonarr
+            - mountPath: /nfs-downloads
+              name: sonarr-downloads
+            - mountPath: /nfs-tvshows
+              name: sonarr-tvshows
+          resources:
+            limits:
+              cpu: 1
+              memory: 1Gi
+            requests:
+              cpu: 0.5
+              memory: 512Mi
