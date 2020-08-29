@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transmission-transmission-openvpn
+  labels:
+    app: transmission-openvpn
+    chart: transmission-openvpn-0.1.0
+    release: transmission
+    heritage: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transmission-openvpn
+      release: transmission
+  template:
+    metadata:
+      labels:
+        app: transmission-openvpn
+        release: transmission
+    spec:
+      volumes:
+      - name: transmission-downloads
+        persistentVolumeClaim:
+          claimName: nfs-downloads
+      - name: transmission-config
+        persistentVolumeClaim:
+          claimName: nfs-configs
+      - hostPath:
+          path: /dev/net/tun
+        name: dev-tun
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+        - 8.8.8.8
+        - 8.8.4.4
+      containers:
+        - name: transmission-openvpn
+          image: "haugene/transmission-openvpn:2.13"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: OPENVPN_PROVIDER
+              value: MULLVAD
+            - name: OPENVPN_CONFIG
+              value: mullvad_se-sto-tcp443
+            - name: OPENVPN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: transmission-credentials
+            - name: OPENVPN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: transmission-credentials
+            - name: LOCAL_NETWORK
+              value: 192.168.86.0/24
+            - name: WEBPROXY_ENABLED
+              value: "false"
+            - name: TRANSMISSION_WEB_UI
+              value: transmission-web-control
+            - name: TRANSMISSION_HOME
+              value: /nfs-configs/transmission-home
+            - name: TRANSMISSION_DOWNLOAD_DIR
+              value: /nfs-downloads/complete
+            - name: TRANSMISSION_INCOMPLETE_DIR_ENABLED
+              value: "true"
+            - name: TRANSMISSION_INCOMPLETE_DIR
+              value: /nfs-downloads/incomplete
+            - name: TRANSMISSION_RATIO_LIMIT
+              value: "0.01"
+            - name: TRANSMISSION_RATIO_LIMIT_ENABLED
+              value: "true"
+            - name: TRANSMISSION_ALT_SPEED_DOWN
+              value: "1000"
+            - name: TRANSMISSION_ALT_SPEED_UP
+              value: "200"
+            - name: TRANSMISSION_ALT_SPEED_TIME_ENABLED
+              value: "true"
+            - name: TRANSMISSION_ALT_SPEED_TIME_DAY
+              value: "62"
+            - name: TRANSMISSION_ALT_SPEED_TIME_BEGIN
+              value: "420"
+            - name: TRANSMISSION_ALT_SPEED_TIME_END
+              value: "1380"
+            - name: TRANSMISSION_BLOCKLIST_ENABLED
+              value: "true"
+          ports:
+            - name: http
+              containerPort: 9091
+              protocol: TCP
+          securityContext:
+            capabilities:
+              add:
+              - NET_ADMIN
+          volumeMounts:
+            - mountPath: /nfs-downloads
+              name: transmission-downloads
+            - mountPath: /nfs-configs
+              name: transmission-config
+              subPath: transmission
+            - mountPath: /dev/net/tun
+              name: dev-tun
