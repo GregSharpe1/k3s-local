@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jackett
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jackett
+      release: jackett
+  template:
+    metadata:
+      labels:
+        app: jackett
+        release: jackett
+    spec:
+      volumes:
+      - name: jackett-downloads
+        persistentVolumeClaim:
+          claimName: nfs-jackett
+      - name: jackett-configs
+        persistentVolumeClaim:
+          claimName: nfs-configs
+      - hostPath:
+          path: /dev/net/tun
+        name: dev-tun
+      containers:
+        - name: jackett
+          image: "dyonr/jackettvpn:latest"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: VPN_ENABLED
+              value: "yes"
+            - name: VPN_TYPE
+              value: openvpn
+            - name: VPN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: openvpn-username
+                  name: jackett-credentials
+            - name: VPN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: openvpn-password
+                  name: jackett-credentials
+            - name: WEBUI_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: webui-password
+                  name: jackett-credentials
+            - name: DISABLE_IPV6
+              value: "1"
+            - name: LAN_NETWORK
+              value: 192.168.86.0/24
+            - name: CREATE_TUN_DEVICE
+              value: "true"
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+          ports:
+            - name: http
+              containerPort: 9117
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /nfs-downloads
+              name: jackett-downloads
+            - mountPath: /config
+              name: jackett-configs
+              subPath: jackett
+            - mountPath: /dev/net/tun
+              name: dev-tun
+          resources:
+            limits:
+              cpu: 0.5
+              memory: 256Mi
+            requests:
+              cpu: 0.1
+              memory: 128Mi
+          securityContext:
+            capabilities:
+              add:
+              - NET_ADMIN
