@@ -40,12 +40,14 @@ spec:
 
     dnsmasq:
       additionalHostsEntries:
-        - 192.168.86.171 pihole
-        - 192.168.86.200 prox
-        - 192.168.86.201 plex
-        - 192.168.86.172 transmission
+        - 192.168.86.170 nginx
+        - 192.168.86.171 transmission
+        - 192.168.86.172 pihole
         - 192.168.86.173 radarr
         - 192.168.86.174 sonarr
+        - 192.168.86.175 jackett
+        - 192.168.86.200 prox
+        - 192.168.86.201 plex
 
     webHttp: "8080"
     webHttps: "8443"
