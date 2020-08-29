@@ -1,0 +1,22 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: tautulli
+  namespace: media
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: tautulli
+  chart:
+    repository: https://k8s-at-home.com/charts/
+    name: tautulli
+    version: 3.0.0
+  values:
+    image:
+      repository: linuxserver/tautulli
+      tag: v2.5.4-ls12
+      pullPolicy: IfNotPresent
+    service:
+      type: LoadBalancer
+      loadBalancerIP: "192.168.86.176"
+
