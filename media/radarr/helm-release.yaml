@@ -42,7 +42,7 @@ spec:
           claimName: "nfs-movies"
       - name: "radarr-config"
         persistentVolumeClaim:
-          claimName: "nfs-configs"
+          claimName: "radarr-config"
 
     volumeMounts:
       - name: "radarr-config"
