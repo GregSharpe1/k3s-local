@@ -50,7 +50,7 @@ spec:
 
     service:
       type: LoadBalancer
-      port: 9898
+      port: 9117
 
     volumes:
       - name: "jackett-downloads"
