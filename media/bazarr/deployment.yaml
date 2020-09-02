@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bazarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bazarr
+      release: bazarr
+  template:
+    metadata:
+      labels:
+        app: bazarr
+        release: bazarr
+    spec:
+      volumes:
+      - name: bazarr-downloads
+        persistentVolumeClaim:
+          claimName: nfs-downloads
+      - name: bazarr-movies
+        persistentVolumeClaim:
+          claimName: nfs-movies
+      - name: bazarr-tvshows
+        persistentVolumeClaim:
+          claimName: nfs-tvshows
+      - name: bazarr-config
+        persistentVolumeClaim:
+          claimName: bazarr-config
+      containers:
+        - name: bazarr
+          image: "linuxserver/bazarr:561d5e08-ls36"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+          ports:
+            - name: http
+              containerPort: 6767
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: bazarr-config
+              subPath: bazarr
+            - mountPath: /nfs-downloads
+              name: bazarr-downloads
+            - mountPath: /nfs-tvshows
+              name: bazarr-tvshows
+            - mountPath: /nfs-movies
+              name: bazarr-movies
+          resources:
+            limits:
+              cpu: 1
+              memory: 1Gi
+            requests:
+              cpu: 0.5
+              memory: 512Mi

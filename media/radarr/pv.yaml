@@ -26,23 +26,6 @@ spec:
   storageClassName: ""
 ---
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: radarr-config
-  namespace: media
-spec:
-  accessModes:
-  - ReadWriteOnce
-  capacity:
-    storage: 1Gi
-  hostPath:
-    path: /var/lib/rancher/k3s/storage/radarr-config
-    type: DirectoryOrCreate
-  persistentVolumeReclaimPolicy: Delete
-  storageClassName: local-path
-  volumeMode: Filesystem
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: radarr-config
@@ -53,6 +36,4 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: local-path
-  volumeMode: Filesystem
-  volumeName: radarr-config
+  storageClassName: longhorn

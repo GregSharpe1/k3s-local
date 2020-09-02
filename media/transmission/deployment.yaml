@@ -3,22 +3,15 @@ kind: Deployment
 metadata:
   namespace: media
   name: transmission-transmission-openvpn
-  labels:
-    app: transmission-openvpn
-    chart: transmission-openvpn-0.1.0
-    release: transmission
-    heritage: Helm
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: transmission-openvpn
-      release: transmission
   template:
     metadata:
       labels:
         app: transmission-openvpn
-        release: transmission
     spec:
       volumes:
       - name: transmission-downloads
