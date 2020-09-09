@@ -17,10 +17,21 @@ spec:
       tag: v2.5.4-ls12
       pullPolicy: IfNotPresent
     service:
-      type: LoadBalancer
-      loadBalancerIP: "192.168.86.176"
+      type: ClusterIP
     persistence:
       config:
         enabled: true
         existingClaim: nfs-configs
         subPath: tautulli
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.nginx: nginx
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+      hosts:
+        - plexpy.k3s.sharpe.wales
+      tls:
+        - secretName: plexpy-production-tls
+          hosts:
+            - plexpy.k3s.sharpe.wales
