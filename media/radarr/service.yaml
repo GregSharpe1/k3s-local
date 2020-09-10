@@ -4,8 +4,7 @@ metadata:
   name: radarr
   namespace: media
 spec:
-  type: LoadBalancer
-  loadBalancerIP: "192.168.86.174"
+  type: ClusterIP
   ports:
     - port: 7878
       targetPort: 7878
