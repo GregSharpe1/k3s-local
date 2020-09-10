@@ -21,7 +21,7 @@ spec:
         imagePullPolicy: IfNotPresent
         name: echoip
         args:
-          - "--trusted-header=X-Forwarded-For"
+          - "-H=X-Forwarded-For"
         ports:
         - containerPort: 8080
           protocol: TCP
