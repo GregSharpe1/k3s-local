@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    kubernetes.io/ingress.nginx: nginx
+    kubernetes.io/tls-acme: "true"
+    name: sonarr
+  namespace: media
+spec:
+  rules:
+  - host: sonarr.k3s.sharpe.wales
+    http:
+      paths:
+      - backend:
+          serviceName: sonarr
+          servicePort: http
+        path: /
+  tls:
+  - hosts:
+    - sonarr.k3s.sharpe.wales
+    secretName: sonarr-production-tls
