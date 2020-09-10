@@ -26,26 +26,9 @@ spec:
   storageClassName: ""
 ---
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: sonar-config
-  namespace: media
-spec:
-  accessModes:
-  - ReadWriteOnce
-  capacity:
-    storage: 1Gi
-  hostPath:
-    path: /var/lib/rancher/k3s/storage/sonar-config
-    type: DirectoryOrCreate
-  persistentVolumeReclaimPolicy: Delete
-  storageClassName: local-path
-  volumeMode: Filesystem
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sonar-config
+  name: sonarr-config
   namespace: media
 spec:
   accessModes:
@@ -53,6 +36,4 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: local-path
-  volumeMode: Filesystem
-  volumeName: sonar-config
+  storageClassName: longhorn
