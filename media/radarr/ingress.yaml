@@ -5,7 +5,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production
     kubernetes.io/ingress.nginx: nginx
     kubernetes.io/tls-acme: "true"
-    name: radarr
+  name: radarr
   namespace: media
 spec:
   rules:

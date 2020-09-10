@@ -5,8 +5,8 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production
     kubernetes.io/ingress.nginx: nginx
     kubernetes.io/tls-acme: "true"
-    name: sonarr
   namespace: media
+  name: sonarr
 spec:
   rules:
   - host: sonarr.k3s.sharpe.wales
