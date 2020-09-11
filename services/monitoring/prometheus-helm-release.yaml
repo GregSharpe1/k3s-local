@@ -1,16 +1,16 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: prometheus-operator
+  name: kube-prometheus-stack
   namespace: monitoring
   annotations:
     fluxcd.io/automated: "false"
 spec:
-  releaseName: prometheus-operator
+  releaseName: kube-prometheus-stack
   chart:
-    repository: https://kubernetes-charts.storage.googleapis.com/
-    name: prometheus-operator
-    version: 9.3.1
+    repository: https://prometheus-community.github.io/helm-charts
+    name: kube-prometheus-stack
+    version: 9.4.0
   values:
     prometheus:
       prometheusSpec:
