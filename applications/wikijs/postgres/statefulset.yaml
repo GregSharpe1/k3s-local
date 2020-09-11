@@ -5,6 +5,8 @@ metadata:
   namespace: wikijs
   labels:
     app: postgresql
+  annotations:
+    fluxcd.io/automated: "false"
 spec:
   serviceName: postgresql
   replicas: 1
