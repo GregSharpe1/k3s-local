@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: radarr
   namespace: media
+  annotations:
+    fluxcd.io/automated: "true"
+
 spec:
   replicas: 1
   selector:
