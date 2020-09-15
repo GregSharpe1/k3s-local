@@ -6,7 +6,7 @@ metadata:
   namespace: media
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.sidecar: regex:^(?!amd64|arm|preview).*$ # Does not start with amd64, arm32, preview. https://hub.docker.com/r/linuxserver/sonarr/tags
+    fluxcd.io/tag.sidecar: regex:^(?!arm64|arm32|amd64|arm|preview).*$ # Does not start with amd64, arm32, preview. https://hub.docker.com/r/linuxserver/sonarr/tags
 spec:
   strategy:
     type: Recreate
