@@ -2,16 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: media
-  name: transmission-transmission-openvpn
+  name: transmission-openvpn
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: transmission-openvpn
+      app: "transmission-openvpn"
   template:
     metadata:
       labels:
-        app: transmission-openvpn
+        app: "transmission-openvpn"
     spec:
       volumes:
       - name: transmission-downloads
