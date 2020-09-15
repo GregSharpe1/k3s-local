@@ -6,7 +6,7 @@ metadata:
   namespace: media
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.sidecar: regex:^(?!arm|amd64|preview|latest).*$
+    fluxcd.io/tag.sonarr: regex:^(?!arm|amd64|preview|latest).*$
 spec:
   strategy:
     type: Recreate
