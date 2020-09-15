@@ -11,3 +11,8 @@ spec:
     repository: https://charts.longhorn.io
     name: longhorn
     version: 1.0.2
+  values:
+    service:
+      ui:
+        type: LoadBalancer
+
