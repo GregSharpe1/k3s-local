@@ -6,7 +6,7 @@ metadata:
   namespace: media
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.radarr: regex:^(?!arm|amd64|preview|latest).*
+    fluxcd.io/tag.radarr: 'regex:^(?!arm|amd64|preview|latest).*$'
 spec:
   strategy:
     type: Recreate
@@ -33,7 +33,7 @@ spec:
           claimName: radarr-config
       containers:
       - name: radarr
-        image: "linuxserver/radarr:arm64v8-latest"
+        image: "linuxserver/radarr:3.0.0.3716-ls22"
         imagePullPolicy: IfNotPresent
         env:
         - name: PUID
