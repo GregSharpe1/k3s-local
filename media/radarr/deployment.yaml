@@ -33,7 +33,7 @@ spec:
           claimName: radarr-config
       containers:
       - name: radarr
-        image: "linuxserver/radarr:arm64v8-latest"
+        image: "linuxserver/radarr:0.2.0.1540-ls21"
         imagePullPolicy: IfNotPresent
         env:
         - name: PUID
