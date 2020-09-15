@@ -33,7 +33,7 @@ spec:
           claimName: sonarr-config
       containers:
       - name: sonarr
-        image: "linuxserver/sonarr:arm32v7-3.0.3.925-ls42"
+        image: "linuxserver/sonarr:arm64v8-3.0.3.925-ls42"
         imagePullPolicy: IfNotPresent
         env:
         - name: PUID
