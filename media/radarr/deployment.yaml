@@ -6,7 +6,7 @@ metadata:
   namespace: media
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.sidecar: regex:^(?!amd64|arm|preview).*$ # Does not start with amd64, arm32, preview. https://hub.docker.com/r/linuxserver/radarr/tags
+    fluxcd.io/tag.sidecar: regex:^(?!arm|amd64|preview|latest).*$
 spec:
   strategy:
     type: Recreate
@@ -33,7 +33,7 @@ spec:
           claimName: radarr-config
       containers:
       - name: radarr
-        image: "linuxserver/radarr:arm64v8-latest"
+        image: "linuxserver/radarr:v0.2.0.1504-ls77"
         imagePullPolicy: IfNotPresent
         env:
         - name: PUID
